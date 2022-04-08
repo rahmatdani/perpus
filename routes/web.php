@@ -1,5 +1,6 @@
 <?php
 use App\Http\Controllers\Petugas\KategoriController;
+use App\Http\Controllers\Petugas\RakController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\SiswaController;
@@ -32,6 +33,7 @@ Route::group(['middleware' => ['auth','role:1']], function (){
 });
 Route::group(['middleware' => ['auth','role:2']], function (){
     Route::get('/kategori', [KategoriController::class, 'index']);
+    Route::get('/rak', [RakController::class, 'index']);
     Route::get('/inventory/masterbuku',[HomeController::class, 'masterbuku']);
 });
 Route::group(['middleware' => ['auth','role:3']], function (){
