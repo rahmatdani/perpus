@@ -7,7 +7,8 @@ use Livewire\Component;
 use Illuminate\Support\Str;
 class Kategori extends Component
 {
-    public $kat_id, $nama, $edit;
+    // public $kat_id, $nama, $edit;
+    public $create, $edit, $delete, $nama, $kategori_id, $search;
     public $status = false;
     protected $listeners = [
         'delete' => 'delete'
@@ -27,21 +28,51 @@ class Kategori extends Component
         ]);
     }
 
-    public function simpan()
+
+    public function create()
     {
-        // $this->status = 3;
+        $this->format();
+
+        $this->create = true;
+    }
+
+    public function store()
+    {
         $this->validate();
-        // $this->kat_id = 0;
-        Mkategori::updateOrCreate([
-            'id' => $this->kat_id
-        ],[
+
+        MKategori::create([
             'nama' => $this->nama,
             'slug' => Str::slug($this->nama)
         ]);
+
+        session()->flash('sukses', 'Kategori berhasil ditambahkan');
+
+        $this->format();
         $this->emit('kategori');
-        // unset($this->simpan);
-        $this->reset_tulisan();
-        // dd($kat_id);
+    }
+
+    public function edit(MKategori $kategori)
+    {
+        $this->format();
+
+        $this->edit = true;
+        $this->nama = $kategori->nama;
+        $this->kategori_id = $kategori->id;
+    }
+
+    public function update(MKategori $kategori)
+    {
+        $this->validate();
+
+        $kategori->update([
+            'nama' => $this->nama,
+            'slug' => Str::slug($this->nama)
+        ]);
+
+        session()->flash('edit', 'Kategori berhasil diubah');
+
+        $this->format();
+        $this->emit('kategori');
     }
 
     private function reset_tulisan()
@@ -49,13 +80,13 @@ class Kategori extends Component
         $this->nama = '';
     }
 
-    public function edit($id)
-    {
-        $this->status = true;
-        $edit = Mkategori::where('id',$id)->first();
-        $this->nama = $edit->nama;
-        $this->kat_id = $edit->id;
-    }
+    // public function edit($id)
+    // {
+    //     $this->status = true;
+    //     $edit = Mkategori::where('id',$id)->first();
+    //     $this->nama = $edit->nama;
+    //     $this->kat_id = $edit->id;
+    // }
 
     public function hapus($id)
     {
@@ -79,6 +110,15 @@ class Kategori extends Component
     {
         $status = false;
         $this->reset_tulisan();
+    }
+
+    public function format()
+    {
+        unset($this->kategori_id);
+        unset($this->nama);
+        unset($this->create);
+        unset($this->edit);
+        unset($this->delete);
     }
 
 

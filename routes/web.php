@@ -32,8 +32,8 @@ Route::group(['middleware' => ['auth','role:1']], function (){
     Route::get('/home/siswa', [SiswaController::class, 'siswa']);
 });
 Route::group(['middleware' => ['auth','role:2']], function (){
-    Route::get('/kategori', [KategoriController::class, 'index']);
-    Route::get('/rak', [RakController::class, 'index']);
+    Route::get('/petugas/kategori', [KategoriController::class, 'home']);
+    Route::get('/petugas/rak', [RakController::class, 'index']);
     Route::get('/inventory/masterbuku',[HomeController::class, 'masterbuku']);
 });
 Route::group(['middleware' => ['auth','role:3']], function (){

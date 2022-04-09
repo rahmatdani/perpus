@@ -2,6 +2,18 @@
     {{-- Because she competes with no one, no one can compete with her. --}}
     <div class="row">
         <div class="col-lg-12">
+            @if (session('sukses'))
+            <div class="alert alert-success alert-dismissible fade show" role="alert">
+                {{session('sukses')}}
+                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+              </div>
+            @endif
+            @if (session('edit'))
+            <div class="alert alert-primary alert-dismissible fade show" role="alert">
+                {{session('edit')}}
+                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+              </div>
+            @endif
             <div class="card">
                 <div class="card-body">
                     <button class="btn btn-primary mb-4" data-bs-toggle="modal" data-bs-target="#kategori">Tambah</button>
@@ -26,7 +38,7 @@
                                       
                                 </div>
                                 <div class="modal-footer">
-                                    <button wire:click="simpan()" type="button" class="btn btn-primary" aria-label="Close">Submit</button>
+                                    <button wire:click="store()" type="button" class="btn btn-primary" aria-label="Close">Submit</button>
                                     </form>
                                 </div>
                             {{-- </form> --}}
@@ -58,7 +70,7 @@
                                       
                                 </div>
                                 <div class="modal-footer">
-                                    <button wire:click="simpan()" type="button" class="btn btn-primary" aria-label="Close">Submit</button>
+                                    <button wire:click="update({{$kategori_id}})" type="button" class="btn btn-primary" aria-label="Close">Submit</button>
                                     </form>
                                 </div>
                             {{-- </form> --}}

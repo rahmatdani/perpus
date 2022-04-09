@@ -13,7 +13,7 @@ class KategoriController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function home()
     {
         return view('petugas/kategori/index', [
             "title" => "Home"

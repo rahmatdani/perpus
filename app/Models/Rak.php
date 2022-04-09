@@ -13,6 +13,6 @@ class Rak extends Model
 
     public function kategori()
     {
-        return $this->belongsTo(kategori::class);
+        return $this->belongsTo(Kategori::class);
     }
 }
