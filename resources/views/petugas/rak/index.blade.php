@@ -18,9 +18,9 @@
 @section('validasikategori')
 
     <script>
-        window.livewire.on('kategori', () => {
-            $('#kategori').modal('hide');
-            $('#kategori1').modal('hide');
+        window.livewire.on('rak', () => {
+            $('#rak').modal('hide');
+            $('#rak1').modal('hide');
         });
 
     </script>

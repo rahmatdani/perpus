@@ -3,20 +3,20 @@
     <div class="row">
         <div class="col-lg-12">
             @if (session('sukses'))
-            <div class="alert alert-success alert-dismissible fade show" role="alert">
-                {{session('sukses')}}
-                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-              </div>
+              <div class="alert alert-success" role="alert">
+                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-hidden="true">×</button>
+                <i class="fa fa-check-circle-o me-2" aria-hidden="true"></i> {{session('sukses')}}
+            </div>
             @endif
             @if (session('edit'))
-            <div class="alert alert-primary alert-dismissible fade show" role="alert">
-                {{session('edit')}}
-                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-              </div>
+            <div class="alert alert-success" role="alert">
+                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-hidden="true">×</button>
+                <i class="fa fa-check-circle-o me-2" aria-hidden="true"></i> {{session('edit')}}
+            </div>
             @endif
             <div class="card">
                 <div class="card-body">
-                    <button class="btn btn-primary mb-4" data-bs-toggle="modal" data-bs-target="#kategori">Tambah</button>
+                    <button class="btn btn-primary mb-4" data-bs-toggle="modal" data-bs-target="#kategori"><i class="fe fe-plus me-2"></i>Tambah</button>
                     {{-- start modal tambahkan data --}}
                     <div wire:ignore.self class="modal fade" id="kategori" tabindex="-1" role="dialog">
                         <div class="modal-dialog modal-lg " role="document">
@@ -100,15 +100,15 @@
                                     <td>
                                         
                                         {{-- <a wire:click="upload('{{ $kt->id }}')" href="javascript:;" class="btn-sm btn-info" >upload</a> --}}
-                                        <a  wire:click="hapus('{{ $kt->id }}')" href="javascript:;" class="btn-sm btn-danger">Hapus</a>
-                                        <a wire:click="edit('{{ $kt->id }}')" href="javascript:;" data-bs-toggle="modal" data-bs-target="#kategori1" class="btn-sm btn-success">Edit</a>
+                                        <a  wire:click="hapus('{{ $kt->id }}')" href="javascript:;" class="btn-sm btn-danger"><i class="fe fe-trash"></i> Hapus</a>
+                                        <a wire:click="edit('{{ $kt->id }}')" href="javascript:;" data-bs-toggle="modal" data-bs-target="#kategori1" class="btn-sm btn-success"><i class="fe fe-activity"></i> Ubah</a>
                                     </td>
                                 </tr>
                                 @endforeach
                             </tbody>
                         </table>
                     </div><br>
-                    <div class="dataTables_paginate paging_simple_numbers">
+                    <div class="pagination justify-content-center">
                         {{ $kategori->links() }}
                     </div>
                 </div>

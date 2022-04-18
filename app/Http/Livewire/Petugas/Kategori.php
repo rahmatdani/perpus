@@ -24,7 +24,7 @@ class Kategori extends Component
     public function render()
     {
         return view('livewire.petugas.kategori',[
-            'kategori' => MKategori::latest()->paginate(10)
+            'kategori' => MKategori::latest()->paginate(5)
         ]);
     }
 
